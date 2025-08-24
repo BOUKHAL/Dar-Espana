@@ -25,6 +25,7 @@ Route::middleware('auth')->group(function () {
 
     // Routes Planification
     Route::resource('planification', PlanificationController::class);
+    Route::get('/planification/centre/{id}/options', [PlanificationController::class, 'getOptions'])->name('planification.options');
 
     // Routes Parascolaire
     Route::resource('parascolaire', ParascolaireController::class);
