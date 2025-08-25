@@ -31,7 +31,11 @@ Route::middleware('auth')->group(function () {
     Route::resource('parascolaire', ParascolaireController::class);
 
     // Routes Jours Fériés
-    Route::resource('jours-feries', JoursFeriesController::class);
+    Route::patch('/jours-feries/{jourFerie}/toggle-status', [JoursFeriesController::class, 'toggleStatus'])->name('jours-feries.toggle-status');
+    Route::get('/api/jours-feries/calendar/{annee?}', [JoursFeriesController::class, 'getCalendar'])->name('jours-feries.calendar');
+    Route::resource('jours-feries', JoursFeriesController::class)->parameters([
+        'jours-feries' => 'joursFerie'
+    ]);
 
     // Routes Documents
     Route::resource('documents', DocumentsController::class);

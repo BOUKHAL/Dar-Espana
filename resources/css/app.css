@@ -4,3 +4,191 @@
 @source '../../storage/framework/views/*.php';
 @source '../**/*.blade.php';
 @source '../**/*.js';
+
+/* Couleurs de branding personnalisées */
+:root {
+    --capstone-yellow: #ffca26;
+    --capstone-red: #c60d1e;
+}
+
+/* Style personnalisé pour la navigation */
+.capstone-nav-gradient {
+    background: linear-gradient(90deg, var(--capstone-red) 0%, var(--capstone-yellow) 100%);
+}
+
+/* Animation pour les liens de navigation */
+.nav-link-hover {
+    transition: all 0.3s ease;
+}
+
+.nav-link-hover:hover {
+    transform: translateY(-1px);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style pour le logo */
+.capstone-logo {
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+    transition: all 0.3s ease;
+}
+
+.capstone-logo:hover {
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.3));
+    transform: scale(1.05);
+}
+
+/* Style pour les badges de notification */
+.notification-badge {
+    background: var(--capstone-yellow);
+    color: var(--capstone-red);
+    font-weight: bold;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Style pour les inputs dans la navigation */
+nav input[type="text"], nav input[type="search"] {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    border-radius: 8px !important;
+}
+
+nav input[type="text"]::placeholder, nav input[type="search"]::placeholder {
+    color: rgba(255, 255, 255, 0.7) !important;
+}
+
+nav input[type="text"]:focus, nav input[type="search"]:focus {
+    outline: none !important;
+    box-shadow: 0 0 0 2px var(--capstone-yellow) !important;
+    border-color: transparent !important;
+}
+
+/* Cibler tous les éléments avec fond blanc dans la navigation */
+nav .bg-white, nav [style*="background:white"], nav [style*="background: white"], nav [style*="background-color:white"], nav [style*="background-color: white"] {
+    background: rgba(255, 255, 255, 0.2) !important;
+    color: white !important;
+}
+
+/* Pour les divs ou sections blanches */
+nav div[class*="bg-white"] {
+    background: rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Styles pour les pages d'authentification */
+/* Custom checkbox styles */
+input[type="checkbox"]:checked {
+    background-color: var(--capstone-red);
+    border-color: var(--capstone-red);
+}
+
+input[type="checkbox"]:focus {
+    --tw-ring-color: var(--capstone-yellow);
+    --tw-ring-opacity: 0.5;
+}
+
+/* Custom input focus styles for forms */
+.form-input:focus, input:focus, textarea:focus {
+    border-color: var(--capstone-yellow) !important;
+    box-shadow: 0 0 0 3px rgba(255, 202, 38, 0.1) !important;
+}
+
+/* Error message styles */
+.text-red-600 {
+    color: var(--capstone-red) !important;
+}
+
+/* Link hover transitions */
+a {
+    transition: color 0.2s ease-in-out;
+}
+
+/* Card styles for auth pages */
+.auth-card {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 202, 38, 0.2);
+}
+
+/* Enhanced form styles */
+.form-container {
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(255, 255, 255, 0.92));
+    backdrop-filter: blur(15px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(255, 202, 38, 0.2);
+}
+
+/* Button gradient animations */
+.btn-gradient-primary {
+    background: linear-gradient(135deg, var(--capstone-red), #e53e3e);
+    transition: all 0.3s ease;
+}
+
+.btn-gradient-primary:hover {
+    background: linear-gradient(135deg, #b91c1c, var(--capstone-red));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(198, 13, 30, 0.3);
+}
+
+.btn-gradient-secondary {
+    background: linear-gradient(135deg, var(--capstone-yellow), #fbbf24);
+    transition: all 0.3s ease;
+}
+
+.btn-gradient-secondary:hover {
+    background: linear-gradient(135deg, #f59e0b, var(--capstone-yellow));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 202, 38, 0.3);
+}
+
+/* Card hover effects */
+.card-hover {
+    transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* Badge animations */
+.badge-animated {
+    transition: all 0.2s ease;
+}
+
+.badge-animated:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Input field improvements */
+input[type="email"], input[type="password"], input[type="text"] {
+    background: linear-gradient(145deg, #fafafa, #f5f5f5);
+    border: 2px solid #e5e7eb;
+    transition: all 0.3s ease;
+}
+
+input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focus {
+    background: white;
+    border-color: var(--capstone-yellow);
+    box-shadow: 0 0 0 3px rgba(255, 202, 38, 0.15), 0 4px 12px rgba(255, 202, 38, 0.1);
+    transform: translateY(-1px);
+}
+
+/* Button hover effects */
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(198, 13, 30, 0.3);
+}
+
+/* Form spacing improvements */
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+/* Title styling */
+.form-title {
+    background: linear-gradient(135deg, var(--capstone-red), #e53e3e);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 2px 4px rgba(198, 13, 30, 0.1);
+}

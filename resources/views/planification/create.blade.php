@@ -1,23 +1,26 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl leading-tight" style="color: #c60d1e;">
                 {{ __('Nouvelle Planification') }}
             </h2>
             <a href="{{ route('planification.index') }}" 
-               class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg shadow-lg transition duration-300 ease-in-out">
+               class="font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out hover:shadow-xl transform hover:scale-105 text-white"
+               style="background-color: #64748b;"
+               onmouseover="this.style.backgroundColor='#475569'"
+               onmouseout="this.style.backgroundColor='#64748b'">
                 <i class="fas fa-arrow-left mr-2"></i>Retour
             </a>
         </div>
     </x-slot>
 
-    <div class="py-12">
+    <div class="py-12 bg-gray-100 min-h-screen">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg border-t-4" style="border-top-color: #c60d1e;">
                 <div class="p-8">
                     <div class="mb-6">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">
-                            <i class="fas fa-upload text-blue-500 mr-2"></i>Upload d'une nouvelle planification
+                        <h3 class="text-2xl font-bold mb-2" style="color: #c60d1e;">
+                            <i class="fas fa-upload mr-2" style="color: #ffca26;"></i>Upload d'une nouvelle planification
                         </h3>
                         <p class="text-gray-600">Sélectionnez le centre, l'option et uploadez le fichier de planification (PDF ou Excel).</p>
                     </div>
@@ -39,11 +42,12 @@
                         <!-- Sélection du centre -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="centre_id" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <i class="fas fa-building mr-1 text-blue-500"></i>Centre *
+                                <label for="centre_id" class="block text-sm font-semibold mb-2" style="color: #c60d1e;">
+                                    <i class="fas fa-building mr-1" style="color: #ffca26;"></i>Centre *
                                 </label>
                                 <select name="centre_id" id="centre_id" required
-                                        class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition duration-200 text-sm">
+                                        class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm transition duration-200 text-sm"
+                                        style="border-color: #c60d1e; focus:border-color: #ffca26;">
                                     <option value="">Sélectionnez un centre</option>
                                     @foreach($centres as $centre)
                                         <option value="{{ $centre->id }}" {{ old('centre_id') == $centre->id ? 'selected' : '' }}>
@@ -55,11 +59,12 @@
 
                             <!-- Sélection de l'option -->
                             <div>
-                                <label for="option_id" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <i class="fas fa-graduation-cap mr-1 text-green-500"></i>Option *
+                                <label for="option_id" class="block text-sm font-semibold mb-2" style="color: #c60d1e;">
+                                    <i class="fas fa-graduation-cap mr-1" style="color: #ffca26;"></i>Option *
                                 </label>
                                 <select name="option_id" id="option_id" required disabled
-                                        class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition duration-200 text-sm">
+                                        class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm transition duration-200 text-sm"
+                                        style="border-color: #c60d1e; focus:border-color: #ffca26;">
                                     <option value="">Sélectionnez d'abord un centre</option>
                                 </select>
                             </div>
@@ -67,37 +72,40 @@
 
                         <!-- Titre -->
                         <div>
-                            <label for="titre" class="block text-sm font-medium text-gray-700 mb-2">
-                                <i class="fas fa-tag mr-1 text-purple-500"></i>Titre de la planification *
+                            <label for="titre" class="block text-sm font-semibold mb-2" style="color: #c60d1e;">
+                                <i class="fas fa-tag mr-1" style="color: #ffca26;"></i>Titre de la planification *
                             </label>
                             <input type="text" name="titre" id="titre" value="{{ old('titre') }}" required
                                    placeholder="Ex: Emploi du temps - Semaine du 21/08/2025"
-                                   class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition duration-200 text-sm">
+                                   class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm transition duration-200 text-sm"
+                                   style="border-color: #c60d1e; focus:border-color: #ffca26;">
                         </div>
 
                         <!-- Période -->
                         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div>
-                                <label for="semaine_debut" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <i class="fas fa-calendar-day mr-1 text-orange-500"></i>Date de début *
+                                <label for="semaine_debut" class="block text-sm font-semibold mb-2" style="color: #c60d1e;">
+                                    <i class="fas fa-calendar-day mr-1" style="color: #ffca26;"></i>Date de début *
                                 </label>
                                 <input type="date" name="semaine_debut" id="semaine_debut" value="{{ old('semaine_debut') }}" required
                                        min="{{ date('Y-m-d') }}"
-                                       class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition duration-200 text-sm">
+                                       class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm transition duration-200 text-sm"
+                                       style="border-color: #c60d1e; focus:border-color: #ffca26;">
                                 @error('semaine_debut')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-1 text-sm" style="color: #c60d1e;">{{ $message }}</p>
                                 @enderror
                             </div>
 
                             <div>
-                                <label for="semaine_fin" class="block text-sm font-medium text-gray-700 mb-2">
-                                    <i class="fas fa-calendar-day mr-1 text-red-500"></i>Date de fin *
+                                <label for="semaine_fin" class="block text-sm font-semibold mb-2" style="color: #c60d1e;">
+                                    <i class="fas fa-calendar-day mr-1" style="color: #ffca26;"></i>Date de fin *
                                 </label>
                                 <input type="date" name="semaine_fin" id="semaine_fin" value="{{ old('semaine_fin') }}" required
                                        min="{{ date('Y-m-d') }}"
-                                       class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition duration-200 text-sm">
+                                       class="w-full h-12 px-4 border-gray-300 rounded-lg shadow-sm transition duration-200 text-sm"
+                                       style="border-color: #c60d1e; focus:border-color: #ffca26;">
                                 @error('semaine_fin')
-                                    <p class="mt-1 text-sm text-red-600">{{ $message }}</p>
+                                    <p class="mt-1 text-sm" style="color: #c60d1e;">{{ $message }}</p>
                                 @enderror
                             </div>
                         </div>
@@ -113,16 +121,18 @@
 
                         <!-- Upload de fichier -->
                         <div>
-                            <label for="fichier" class="block text-sm font-medium text-gray-700 mb-2">
-                                <i class="fas fa-file-upload mr-1 text-indigo-500"></i>Fichier de planification *
+                            <label for="fichier" class="block text-sm font-semibold mb-2" style="color: #c60d1e;">
+                                <i class="fas fa-file-upload mr-1" style="color: #ffca26;"></i>Fichier de planification *
                             </label>
-                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg hover:border-indigo-400 transition duration-200">
+                            <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-2 border-gray-300 border-dashed rounded-lg transition duration-200"
+                                 style="hover:border-color: #ffca26;">
                                 <div class="space-y-1 text-center">
                                     <div class="flex justify-center">
                                         <i class="fas fa-cloud-upload-alt text-4xl text-gray-400"></i>
                                     </div>
                                     <div class="flex text-sm text-gray-600">
-                                        <label for="fichier" class="relative cursor-pointer bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus-within:outline-none focus-within:ring-2 focus-within:ring-offset-2 focus-within:ring-indigo-500">
+                                        <label for="fichier" class="relative cursor-pointer bg-white rounded-md font-medium transition"
+                                               style="color: #c60d1e;">
                                             <span>Cliquez pour sélectionner un fichier</span>
                                             <input id="fichier" name="fichier" type="file" accept=".pdf,.xlsx,.xls" required class="sr-only">
                                         </label>
@@ -136,22 +146,27 @@
 
                         <!-- Description -->
                         <div>
-                            <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
-                                <i class="fas fa-comment mr-1 text-gray-500"></i>Description (optionnel)
+                            <label for="description" class="block text-sm font-semibold mb-2" style="color: #c60d1e;">
+                                <i class="fas fa-comment mr-1" style="color: #ffca26;"></i>Description (optionnel)
                             </label>
                             <textarea name="description" id="description" rows="4" 
                                       placeholder="Ajoutez une description ou des notes concernant cette planification..."
-                                      class="w-full px-4 py-3 border-gray-300 rounded-lg shadow-sm focus:border-indigo-500 focus:ring-indigo-500 transition duration-200 text-sm resize-none">{{ old('description') }}</textarea>
+                                      class="w-full px-4 py-3 border-gray-300 rounded-lg shadow-sm transition duration-200 text-sm resize-none"
+                                      style="border-color: #c60d1e; focus:border-color: #ffca26;">{{ old('description') }}</textarea>
                         </div>
 
                         <!-- Boutons d'action -->
                         <div class="flex justify-end space-x-4 pt-6 border-t border-gray-200">
                             <a href="{{ route('planification.index') }}" 
-                               class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-3 px-8 rounded-lg transition duration-300 h-12 flex items-center">
-                                Annuler
+                               class="bg-white border-2 text-black hover:text-white font-bold py-3 px-8 rounded-lg transition duration-300 h-12 flex items-center hover:shadow-lg transform hover:scale-105"
+                               style="border-color: #64748b; hover:background-color: #64748b;">
+                                <i class="fas fa-times mr-2"></i>Annuler
                             </a>
                             <button type="submit" 
-                                    class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 h-12 flex items-center">
+                                    class="text-white font-bold py-3 px-8 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:scale-105 h-12 flex items-center hover:shadow-xl"
+                                    style="background-color: #c60d1e;"
+                                    onmouseover="this.style.backgroundColor='#a50a17'"
+                                    onmouseout="this.style.backgroundColor='#c60d1e'">
                                 <i class="fas fa-save mr-2"></i>Enregistrer la planification
                             </button>
                         </div>
@@ -160,21 +175,21 @@
             </div>
 
             <!-- Aide -->
-            <div class="bg-blue-50 overflow-hidden shadow-lg sm:rounded-lg mt-6">
+            <div class="bg-white overflow-hidden shadow-lg sm:rounded-lg mt-6 border-l-4" style="border-left-color: #ffca26;">
                 <div class="p-6">
-                    <h4 class="text-lg font-semibold text-blue-900 mb-3">
-                        <i class="fas fa-info-circle mr-2"></i>Informations importantes
+                    <h4 class="text-lg font-semibold mb-3" style="color: #c60d1e;">
+                        <i class="fas fa-info-circle mr-2" style="color: #ffca26;"></i>Informations importantes
                     </h4>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-blue-800">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm text-gray-700">
                         <div>
-                            <h5 class="font-semibold mb-2">Formats acceptés:</h5>
+                            <h5 class="font-semibold mb-2" style="color: #c60d1e;">Formats acceptés:</h5>
                             <ul class="list-disc list-inside space-y-1">
                                 <li>PDF (.pdf)</li>
                                 <li>Excel (.xlsx, .xls)</li>
                             </ul>
                         </div>
                         <div>
-                            <h5 class="font-semibold mb-2">Centres disponibles:</h5>
+                            <h5 class="font-semibold mb-2 text-capstone-red">Centres disponibles:</h5>
                             <ul class="list-disc list-inside space-y-1">
                                 @foreach($centres as $centre)
                                     <li>{{ $centre->nom }} ({{ $centre->options->pluck('nom')->join(', ') }})</li>
@@ -182,11 +197,11 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
-                        <h5 class="font-semibold text-yellow-800 mb-2">
-                            <i class="fas fa-info-circle mr-1"></i>Restrictions importantes:
+                    <div class="mt-4 p-3 bg-capstone-yellow bg-opacity-20 border border-capstone-yellow rounded-lg">
+                        <h5 class="font-semibold text-capstone-red mb-2">
+                            <i class="fas fa-info-circle mr-1 text-capstone-red"></i>Restrictions importantes:
                         </h5>
-                        <ul class="text-sm text-yellow-700 space-y-1">
+                        <ul class="text-sm text-black space-y-1">
                             <li>• Les dates ne peuvent pas être dans le passé</li>
                             <li>• Une seule planification par centre/option par période</li>
                             <li>• La date de fin doit être postérieure à la date de début</li>

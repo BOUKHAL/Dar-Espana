@@ -14,6 +14,12 @@ export default {
             fontFamily: {
                 sans: ['Figtree', ...defaultTheme.fontFamily.sans],
             },
+            colors: {
+                'capstone': {
+                    'yellow': '#ffca26',
+                    'red': '#c60d1e',
+                },
+            },
         },
     },
 

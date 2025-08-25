@@ -1,16 +1,22 @@
 <x-app-layout>
     <x-slot name="header">
         <div class="flex justify-between items-center">
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+            <h2 class="font-semibold text-xl leading-tight" style="color: #c60d1e;">
                 {{ __('Détails de l\'Événement') }}
             </h2>
             <div class="flex space-x-3">
                 <a href="{{ route('parascolaire.edit', $parascolaire) }}" 
-                   class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">
+                   class="font-bold py-2 px-4 rounded text-white transition duration-300"
+                   style="background-color: #ffca26;"
+                   onmouseover="this.style.backgroundColor='#f5c142'"
+                   onmouseout="this.style.backgroundColor='#ffca26'">
                     Modifier
                 </a>
                 <a href="{{ route('parascolaire.index') }}" 
-                   class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">
+                   class="font-bold py-2 px-4 rounded text-white transition duration-300"
+                   style="background-color: #64748b;"
+                   onmouseover="this.style.backgroundColor='#475569'"
+                   onmouseout="this.style.backgroundColor='#64748b'">
                     Retour
                 </a>
             </div>
@@ -19,18 +25,18 @@
 
     <div class="py-12">
         <div class="max-w-4xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg border-t-4" style="border-top-color: #c60d1e;">
                 <div class="p-8">
                     <!-- En-tête de l'événement -->
                     <div class="border-b border-gray-200 pb-6 mb-8">
                         <div class="flex justify-between items-start">
                             <div>
-                                <h1 class="text-3xl font-bold text-gray-900 mb-4">
+                                <h1 class="text-3xl font-bold mb-4" style="color: #c60d1e;">
                                     {{ $parascolaire->nom_evenement }}
                                 </h1>
                                 <div class="flex items-center space-x-4">
-                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium 
-                                        {{ $parascolaire->jour_evenement->isFuture() ? 'bg-green-100 text-green-800' : 'bg-gray-100 text-gray-800' }}">
+                                    <span class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium text-white"
+                                        style="background-color: {{ $parascolaire->jour_evenement->isFuture() ? '#c60d1e' : '#64748b' }};">
                                         {{ $parascolaire->jour_evenement->isFuture() ? 'À venir' : 'Passé' }}
                                     </span>
                                     <span class="text-sm text-gray-500">
@@ -42,7 +48,10 @@
                             <!-- Actions rapides -->
                             <div class="flex space-x-2">
                                 <a href="{{ route('parascolaire.edit', $parascolaire) }}" 
-                                   class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
+                                   class="inline-flex items-center px-3 py-2 border border-transparent text-sm leading-4 font-medium rounded-md text-white transition duration-300"
+                                   style="background-color: #ffca26;"
+                                   onmouseover="this.style.backgroundColor='#f5c142'"
+                                   onmouseout="this.style.backgroundColor='#ffca26'">
                                     <svg class="-ml-1 mr-2 h-4 w-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
                                     </svg>
@@ -140,22 +149,30 @@
     <!-- Popup de confirmation stylée -->
     <div id="deleteModal" class="modal-overlay">
         <div class="modal-content">
-            <div class="modal-icon pulse-animation">
-                <svg class="w-8 h-8 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="modal-icon pulse-animation" style="background: linear-gradient(135deg, #fee2e2, #fecaca);">
+                <svg class="w-8 h-8" style="color: #c60d1e;" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z"></path>
                 </svg>
             </div>
             
             <div class="text-center">
-                <h3 class="text-xl font-bold text-gray-900 mb-3">Confirmer la suppression</h3>
+                <h3 class="text-xl font-bold mb-3" style="color: #c60d1e;">Confirmer la suppression</h3>
                 <p class="text-gray-600 mb-2">Êtes-vous sûr de vouloir supprimer l'événement :</p>
-                <p class="font-semibold text-gray-800 mb-6" id="eventNameToDelete">{{ $parascolaire->nom_evenement }}</p>
-                <p class="text-sm text-red-600 mb-8">⚠️ Cette action est irréversible</p>
+                <div class="p-3 rounded-lg mb-4 border-l-4" style="background: linear-gradient(135deg, #f8fafc, #e2e8f0); border-left-color: #ffca26;">
+                    <p class="font-semibold text-gray-800" id="eventNameToDelete">{{ $parascolaire->nom_evenement }}</p>
+                </div>
+                <div class="flex items-center justify-center p-3 rounded-lg mb-6" style="background-color: #fef2f2; border: 1px solid #fecaca;">
+                    <i class="fas fa-exclamation-triangle mr-2" style="color: #c60d1e;"></i>
+                    <p class="text-sm font-medium" style="color: #c60d1e;">Cette action est irréversible</p>
+                </div>
                 
                 <div class="flex space-x-4 justify-center">
                     <button type="button" 
                             id="cancelDelete"
-                            class="px-6 py-3 bg-gray-100 text-gray-700 rounded-lg hover:bg-gray-200 transition-colors duration-200 font-medium">
+                            class="px-6 py-3 text-gray-700 rounded-lg font-medium transition-colors duration-200 border-2"
+                            style="background-color: white; border-color: #64748b;"
+                            onmouseover="this.style.backgroundColor='#f8fafc'"
+                            onmouseout="this.style.backgroundColor='white'">
                         <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                         </svg>
@@ -163,7 +180,10 @@
                     </button>
                     <button type="button" 
                             id="confirmDelete"
-                            class="px-6 py-3 bg-red-600 text-white rounded-lg hover:bg-red-700 transition-colors duration-200 font-medium">
+                            class="px-6 py-3 text-white rounded-lg font-medium transition-colors duration-200 transform hover:scale-105"
+                            style="background-color: #c60d1e;"
+                            onmouseover="this.style.backgroundColor='#a50a17'"
+                            onmouseout="this.style.backgroundColor='#c60d1e'">
                         <svg class="w-4 h-4 inline mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
                         </svg>
