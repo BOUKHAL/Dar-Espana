@@ -34,4 +34,9 @@ class Planification extends Model
     {
         return $this->belongsTo(Option::class);
     }
+
+    public function getFichierUrlAttribute()
+    {
+        return asset('storage/' . $this->fichier_path);
+    }
 }

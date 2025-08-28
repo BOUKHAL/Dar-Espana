@@ -14,9 +14,9 @@ class PlanificationController extends Controller
     {
         $centres = Centre::with('options')->where('actif', true)->get();
         $planifications = Planification::with(['centre', 'option'])
-                                       ->orderBy('created_at', 'desc')
-                                       ->paginate(10);
-        
+            ->orderBy('created_at', 'desc')
+            ->paginate(10);
+
         return view('planification.index', compact('centres', 'planifications'));
     }
 
@@ -46,11 +46,11 @@ class PlanificationController extends Controller
             ->where('option_id', $request->option_id)
             ->where(function ($query) use ($request) {
                 $query->whereBetween('semaine_debut', [$request->semaine_debut, $request->semaine_fin])
-                      ->orWhereBetween('semaine_fin', [$request->semaine_debut, $request->semaine_fin])
-                      ->orWhere(function ($q) use ($request) {
-                          $q->where('semaine_debut', '<=', $request->semaine_debut)
+                    ->orWhereBetween('semaine_fin', [$request->semaine_debut, $request->semaine_fin])
+                    ->orWhere(function ($q) use ($request) {
+                        $q->where('semaine_debut', '<=', $request->semaine_debut)
                             ->where('semaine_fin', '>=', $request->semaine_fin);
-                      });
+                    });
             })
             ->first();
 
@@ -77,7 +77,7 @@ class PlanificationController extends Controller
         ]);
 
         return redirect()->route('planification.index')
-                        ->with('success', 'Planification uploadée avec succès!');
+            ->with('success', 'Planification uploadée avec succès!');
     }
 
     public function getOptions($centreId)
@@ -96,15 +96,15 @@ class PlanificationController extends Controller
     public function destroy(string $id)
     {
         $planification = Planification::findOrFail($id);
-        
+
         // Supprimer le fichier du stockage
         if (Storage::disk('public')->exists($planification->fichier_path)) {
             Storage::disk('public')->delete($planification->fichier_path);
         }
-        
+
         $planification->delete();
 
         return redirect()->route('planification.index')
-                        ->with('success', 'Planification supprimée avec succès!');
+            ->with('success', 'Planification supprimée avec succès!');
     }
 }
