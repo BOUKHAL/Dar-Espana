@@ -1,4 +1,4 @@
-@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-gradient-to-r from-red-700 to-yellow-500'])
+@props(['align' => 'right', 'width' => '48', 'contentClasses' => 'py-1 bg-red-700'])
 
 @php
 $alignmentClasses = match ($align) {
@@ -8,7 +8,7 @@ $alignmentClasses = match ($align) {
 };
 
 $width = match ($width) {
-    '48' => 'w-48',
+    '35' => 'w-35',
     default => $width,
 };
 @endphp

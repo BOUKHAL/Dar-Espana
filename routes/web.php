@@ -39,6 +39,8 @@ Route::middleware('auth')->group(function () {
 
     // Routes Documents
     Route::resource('documents', DocumentsController::class);
+    Route::get('/documents/niveaux/matiere', [DocumentsController::class, 'getNiveaux'])->name('documents.niveaux');
+    Route::get('/documents/{id}/download', [DocumentsController::class, 'download'])->name('documents.download');
 
     // Routes Notifications
     Route::resource('notifications', NotificationsController::class);

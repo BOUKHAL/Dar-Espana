@@ -1,4 +1,4 @@
-<nav x-data="{ open: false }" class="border-b border-red-700 shadow-lg" style="background: linear-gradient(90deg, #c60d1e 0%, #ff8c00 50%, #ffca26 100%); width: 100%;">
+<nav x-data="{ open: false }" class="border-b border-red-700 shadow-lg" style="background: linear-gradient(90deg, #c60d1e); width: 100%;">
     <!-- Primary Navigation Menu -->
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div class="flex justify-between h-16">
@@ -7,7 +7,6 @@
                 <div class="shrink-0 flex items-center">
                     <a href="{{ route('planification.index') }}" class="flex items-center nav-link-hover">
                         <img src="{{ asset('images/capstone-logo.svg') }}" alt="Capstone Logo" class="capstone-logo h-12 w-auto mr-3" />
-                        <span class="text-white font-bold text-xl hidden md:block">CAPSTONE</span>
                     </a>
                 </div>
 

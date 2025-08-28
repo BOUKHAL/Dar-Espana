@@ -14,7 +14,7 @@
         <!-- Scripts -->
         @vite(['resources/css/app.css', 'resources/js/app.js'])
     </head>
-    <body class="font-sans text-gray-900 antialiased" style="background: linear-gradient(135deg, #c60d1e 0%, #ffca26 100%); min-height: 100vh;">
+    <body class="font-sans text-gray-900 antialiased" style="background: linear-gradient(135deg, #c60d1e); min-height: 100vh;">
         <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0">
             <div class="mb-8">
                 <a href="/" class="flex flex-col items-center">
