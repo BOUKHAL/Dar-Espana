@@ -12,46 +12,46 @@ use App\Models\Student;
 
 class StudentController extends Controller
 {
-    public function generate(Request $request)
-    {
-        $request->validate([
-            'name' => 'required|string|max:255',
-        ]);
+    // public function generate(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => 'required|string|max:255',
+    //     ]);
 
-        // Generate email
-        $baseEmail = strtolower(Str::slug($request->name));
-        $email = $baseEmail . '@darespania.com';
+    //     // Generate email
+    //     $baseEmail = strtolower(Str::slug($request->name));
+    //     $email = $baseEmail . '@darespania.com';
 
-        // Ensure email uniqueness
-        $count = Student::where('email', 'like', $baseEmail . '%@darespana.com')->count();
-        if ($count > 0) {
-            $email = $baseEmail . ($count + 1) . '@darespana.com';
-        }
+    //     // Ensure email uniqueness
+    //     $count = Student::where('email', 'like', $baseEmail . '%@darespana.com')->count();
+    //     if ($count > 0) {
+    //         $email = $baseEmail . ($count + 1) . '@darespana.com';
+    //     }
 
-        // Generate random password
-        $password = Str::random(8);
+    //     // Generate random password
+    //     $password = Str::random(8);
 
-        // Save student
-        $student = Student::create([
-            'name' => $request->name,
-            'email' => $email,
-            'password' => Hash::make($password),
-        ]);
+    //     // Save student
+    //     $student = Student::create([
+    //         'name' => $request->name,
+    //         'email' => $email,
+    //         'password' => Hash::make($password),
+    //     ]);
 
-        // Send email with credentials
-        Mail::to($email)->send(new NameOfMailer([
-            'email' => $email,
-            'password' => $password
-        ]));
+    //     // Send email with credentials
+    //     Mail::to($email)->send(new NameOfMailer([
+    //         'email' => $email,
+    //         'password' => $password
+    //     ]));
 
-        return response()->json([
-            'success' => true,
-            'data' => [
-                'email' => $email,
-                'password' => $password
-            ]
-        ]);
-    }
+    //     return response()->json([
+    //         'success' => true,
+    //         'data' => [
+    //             'email' => $email,
+    //             'password' => $password
+    //         ]
+    //     ]);
+    // }
 
     public function login(Request $request)
     {

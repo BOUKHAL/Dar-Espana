@@ -208,35 +208,35 @@ class DocumentController extends Controller
      * @param int $coursId
      * @return \Symfony\Component\HttpFoundation\BinaryFileResponse|JsonResponse
      */
-    public function downloadCours($coursId)
-    {
-        try {
-            $cours = Cours::findOrFail($coursId);
+    // public function downloadCours($coursId)
+    // {
+    //     try {
+    //         $cours = Cours::findOrFail($coursId);
 
-            if (!$cours->actif) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Ce cours n\'est pas disponible.'
-                ], 404);
-            }
+    //         if (!$cours->actif) {
+    //             return response()->json([
+    //                 'success' => false,
+    //                 'message' => 'Ce cours n\'est pas disponible.'
+    //             ], 404);
+    //         }
 
-            $filePath = storage_path('app/' . $cours->fichier_path);
+    //         $filePath = storage_path('app/' . $cours->fichier_path);
 
-            if (!file_exists($filePath)) {
-                return response()->json([
-                    'success' => false,
-                    'message' => 'Fichier non trouvé.'
-                ], 404);
-            }
+    //         if (!file_exists($filePath)) {
+    //             return response()->json([
+    //                 'success' => false,
+    //                 'message' => 'Fichier non trouvé.'
+    //             ], 404);
+    //         }
 
-            return response()->download($filePath, $cours->fichier_nom);
+    //         return response()->download($filePath, $cours->fichier_nom);
 
-        } catch (\Exception $e) {
-            return response()->json([
-                'success' => false,
-                'message' => 'Erreur lors du téléchargement du fichier.',
-                'error' => $e->getMessage()
-            ], 500);
-        }
-    }
+    //     } catch (\Exception $e) {
+    //         return response()->json([
+    //             'success' => false,
+    //             'message' => 'Erreur lors du téléchargement du fichier.',
+    //             'error' => $e->getMessage()
+    //         ], 500);
+    //     }
+    // }
 }

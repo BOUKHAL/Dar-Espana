@@ -31,6 +31,8 @@ Route::get('/planifications/download/{file}', function ($file) {
     ]);
 })->name('api.planifications.download');
 
+
+
 Route::prefix('jours-feries')->group(function () {
     // Dashboard data (overview)
     Route::get('dashboard', [JoursFeriesApiController::class, 'dashboard']);
@@ -55,7 +57,7 @@ Route::prefix('jours-feries')->group(function () {
     Route::get('check-date', [JoursFeriesApiController::class, 'checkDate']);
 });
 
-Route::post('/students/generate', [StudentController::class, 'generate']);
+// Route::post('/students/generate', [StudentController::class, 'generate']);
 
 Route::post('/login', [StudentController::class, 'login']);
 Route::middleware('auth:sanctum')->group(function () {
@@ -63,9 +65,29 @@ Route::middleware('auth:sanctum')->group(function () {
 });
 
 
+// routes/api.php
 Route::prefix('documents')->group(function () {
     Route::get('/', [DocumentController::class, 'index']);
     Route::get('/niveau/{niveauId}', [DocumentController::class, 'getCoursByNiveau']);
     Route::get('/matiere/{matiereId}', [DocumentController::class, 'getCoursByMatiere']);
-    Route::get('/download/{coursId}', [DocumentController::class, 'downloadCours']);
+
+    // Route de téléchargement
+    Route::get('/download/{file}', function ($file) {
+        // Files are stored in 'cours' directory, not 'documents'
+        $filename = basename($file);
+        $path = storage_path('app/public/cours/' . $filename);
+
+        if (!File::exists($path)) {
+            return response()->json([
+                'error' => 'File not found',
+                'requested' => $file,
+                'looked_for' => $filename,
+                'path' => $path
+            ], 404);
+        }
+
+        return response()->download($path, null, [
+            'Content-Type' => 'application/pdf',
+        ]);
+    })->name('api.documents.download');
 });

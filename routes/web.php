@@ -1,11 +1,15 @@
 <?php
 
+use App\Http\Controllers\Api\StudentController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\PlanificationController;
 use App\Http\Controllers\ParascolaireController;
 use App\Http\Controllers\JoursFeriesController;
 use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\EtudiantController;
+use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\StudentsController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -45,6 +49,15 @@ Route::middleware('auth')->group(function () {
     // Routes Notifications
     Route::resource('notifications', NotificationController::class);
     Route::post('/notifications/preview', [NotificationController::class, 'getEtudiantsByFilter'])->name('notifications.preview');
+    Route::resource('notifications', NotificationsController::class);
+
+    Route::get('/etudiant/information', [StudentsController::class, 'index'])->name('etudiant.information');
+
+
+    Route::get('/etudiant/index', [EtudiantController::class, 'index'])->name('etudiant.index');
+
+    Route::get('/etudiant/create', [EtudiantController::class, 'create'])->name('etudiant.create');
+    Route::post('/etudiant/store', [EtudiantController::class, 'store'])->name('etudiant.store');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';

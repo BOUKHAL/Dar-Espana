@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('centre_id')->constrained('centres')->onDelete('cascade');
             $table->foreignId('option_id')->constrained('options')->onDelete('cascade');
             $table->enum('filiere', ['SANTÉ', 'INGÉNIERIE', 'ARCHITECTURE', 'ÉCONOMIE', 'DROIT', 'SPORT ÉTUDES']);
+            $table->foreignId('student_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
