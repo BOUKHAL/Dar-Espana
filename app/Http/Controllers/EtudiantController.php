@@ -94,16 +94,16 @@ class EtudiantController extends Controller
 
 
         // === Send credentials email ===
-        try {
-            Mail::to($email)->send(new NameOfMailer([
-                'nom' => $request->nom,
-                'prenom' => $request->prenom,
-                'email' => $email,
-                'password' => $plainPassword
-            ]));
-        } catch (\Exception $e) {
-            \Log::error('Failed to send credentials: ' . $e->getMessage());
-        }
+        // try {
+        //     Mail::to($email)->send(new NameOfMailer([
+        //         'nom' => $request->nom,
+        //         'prenom' => $request->prenom,
+        //         'email' => $email,
+        //         'password' => $plainPassword
+        //     ]));
+        // } catch (\Exception $e) {
+        //     \Log::error('Failed to send credentials: ' . $e->getMessage());
+        // }
 
         return redirect()->route("etudiant.index")->with([
             'success' => 'Compte étudiant créé avec succès!',
