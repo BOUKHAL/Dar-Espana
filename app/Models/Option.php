@@ -27,4 +27,9 @@ class Option extends Model
     {
         return $this->hasMany(Planification::class);
     }
+
+    public function etudiants(): HasMany
+    {
+        return $this->hasMany(Etudiant::class);
+    }
 }

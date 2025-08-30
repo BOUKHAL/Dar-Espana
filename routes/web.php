@@ -5,7 +5,7 @@ use App\Http\Controllers\PlanificationController;
 use App\Http\Controllers\ParascolaireController;
 use App\Http\Controllers\JoursFeriesController;
 use App\Http\Controllers\DocumentsController;
-use App\Http\Controllers\NotificationsController;
+use App\Http\Controllers\NotificationController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -43,7 +43,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/documents/{id}/download', [DocumentsController::class, 'download'])->name('documents.download');
 
     // Routes Notifications
-    Route::resource('notifications', NotificationsController::class);
+    Route::resource('notifications', NotificationController::class);
+    Route::post('/notifications/preview', [NotificationController::class, 'getEtudiantsByFilter'])->name('notifications.preview');
 });
 
 require __DIR__.'/auth.php';
